@@ -35,9 +35,10 @@ provider "azurerm" {
     }
     virtual_machine_scale_set {
       roll_instances_when_required = true
-    }
+    } 
   }
-  use_msi = true
+  subscription_id = "c3ba39b9-389c-45e3-ba27-abf4ddd01e84"
+  //use_msi = true
 }
 
 # Dynamic Kubernetes provider configuration using admin credentials

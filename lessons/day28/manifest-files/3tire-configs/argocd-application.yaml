@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/itsBaivab/gitops-configs.git
+    repoURL: https://github.com/chimdi247/gitops-configs.git
     targetRevision: HEAD
     path: 3tire-configs
   destination:

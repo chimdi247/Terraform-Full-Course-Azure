@@ -12,7 +12,7 @@ variable "location" {
 variable "resource_group_name" {
   description = "Name of the resource group"
   type        = string
-  default     = "aks-gitops-rg"
+  default     = "RG-1"
 }
 
 variable "kubernetes_cluster_name" {
@@ -30,7 +30,7 @@ variable "node_count" {
 variable "vm_size" {
   description = "Size of the Virtual Machine"
   type        = string
-  default     = "Standard_D2s_v3"
+  default     = "standard_dc2s_v3"
 }
 
 variable "kubernetes_version" {
@@ -42,7 +42,7 @@ variable "kubernetes_version" {
 variable "gitops_repo_url" {
   description = "GitOps repository URL for ArgoCD"
   type        = string
-  default     = "https://github.com/itsbaivab/gitops-configs.git"
+  default     = "https://github.com/chimdi247/gitops-configs.git"
 }
 
 variable "argocd_namespace" {
@@ -54,7 +54,7 @@ variable "argocd_namespace" {
 variable "app_repo_url" {
   description = "Repository URL for the application to be deployed via ArgoCD"
   type        = string
-  default     = "https://github.com/itsBaivab/gitops-configs.git"
+  default     = "https://github.com/chimdi247/gitops-configs.git"
 }
 
 variable "app_repo_path" {
