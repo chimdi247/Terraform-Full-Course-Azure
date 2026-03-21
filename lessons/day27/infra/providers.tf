@@ -25,4 +25,5 @@ provider "azurerm" {
       roll_instances_when_required = true
     }
   }
+   subscription_id = "c3ba39b9-389c-45e3-ba27-abf4ddd01e84"
 }
