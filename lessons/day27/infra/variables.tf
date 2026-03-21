@@ -7,7 +7,7 @@ variable "environment" {
 variable "location" {
   description = "Azure region for resources"
   type        = string
-  default     = "eastus3"
+  default     = "eastus"
 }
 
 variable "secondary_location" {
@@ -19,7 +19,7 @@ variable "secondary_location" {
 variable "resource_group_name" {
   description = "Name of the resource group"
   type        = string
-  default     = "three-tier-app-rg"
+  default     = "RG-1"
 }
 
 # Network variables
@@ -63,13 +63,13 @@ variable "appgw_subnet_prefix" {
 variable "frontend_vm_size" {
   description = "VM size for frontend instances"
   type        = string
-  default     = "Standard_B2s"
+  default     = "standard_dc2s_v3"
 }
 
 variable "backend_vm_size" {
   description = "VM size for backend instances"
   type        = string
-  default     = "Standard_B2s"
+  default     = "standard_dc2s_v3"
 }
 
 variable "frontend_instances" {
@@ -100,7 +100,7 @@ variable "deploy_compute" {
 variable "postgres_sku_name" {
   description = "SKU name for PostgreSQL Flexible Server"
   type        = string
-  default     = "GP_Standard_D2s_v3"
+  default     = "Standard_B2s"
 }
 
 variable "postgres_version" {
@@ -155,13 +155,13 @@ variable "dockerhub_password" {
 variable "frontend_image" {
   description = "Frontend Docker image name including registry path (e.g., 'username/frontend:latest')"
   type        = string
-  default     = "frontend:latest"
+  default     = "frontend-azure-terraform:latest"
 }
 
 variable "backend_image" {
   description = "Backend Docker image name including registry path (e.g., 'username/backend:latest')"
   type        = string
-  default     = "backend:latest"
+  default     = "backend-azure-terraform:latest"
 }
 
 # Monitoring variables
