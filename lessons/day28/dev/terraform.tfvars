@@ -1,11 +1,11 @@
 # Environment Configuration
 environment             = "dev"                # Environment name (dev/test/prod)
 location                = "eastus"             # Azure region for resource deployment
-resource_group_name     = "RG-1"      # Azure resource group name
+resource_group_name     = "RG-1"               # Azure resource group name
 kubernetes_cluster_name = "aks-gitops-cluster" # AKS cluster name
 node_count              = 2                    # Number of worker nodes in AKS cluster
-vm_size                 = "standard_dc2s_v3"    # VM size for AKS nodes
-kubernetes_version      = "1.32.5"             # Kubernetes version for AKS cluster
+vm_size                 = "standard_dc2s_v3"   # VM size for AKS nodes
+kubernetes_version      = "1.34.5"             # Kubernetes version for AKS cluster
 
 # GitOps Configuration
 gitops_repo_url  = "https://github.com/chimdi247/gitops-configs.git" # GitOps repository for infrastructure configs (reference only)

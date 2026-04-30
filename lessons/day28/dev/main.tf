@@ -44,6 +44,9 @@ resource "azurerm_kubernetes_cluster" "main" {
   resource_group_name = azurerm_resource_group.main.name
   dns_prefix          = "${var.kubernetes_cluster_name}-${var.environment}"
 
+  oidc_issuer_enabled       = true # ← must stay true, cannot revert
+  workload_identity_enabled = true # ← usually paired with OIDC
+
   # Use explicit node resource group name (this prevents circular dependencies)
   node_resource_group = local.infra_nodes_rg_name
   kubernetes_version  = var.kubernetes_version

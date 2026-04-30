@@ -36,7 +36,7 @@ variable "vm_size" {
 variable "kubernetes_version" {
   description = "Kubernetes version"
   type        = string
-  default     = "1.32.5"
+  default     = "1.34.5"
 }
 
 variable "gitops_repo_url" {

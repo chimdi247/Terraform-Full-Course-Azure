@@ -78,6 +78,7 @@ resource "null_resource" "goal_tracker_app" {
   provisioner "local-exec" {
     working_dir = path.module
     command     = "./scripts/deploy-argocd-app.sh"
+    interpreter = ["C:/Program Files/Git/bin/bash.exe", "-c"] // for Windows with Git Bash
 
     environment = {
       ENVIRONMENT      = var.environment

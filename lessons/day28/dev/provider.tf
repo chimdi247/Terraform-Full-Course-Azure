@@ -35,9 +35,9 @@ provider "azurerm" {
     }
     virtual_machine_scale_set {
       roll_instances_when_required = true
-    } 
+    }
   }
-  subscription_id = "c3ba39b9-389c-45e3-ba27-abf4ddd01e84"
+  subscription_id = "900c4c9f-efc9-41c8-ada6-bdfb7dfddde3"
   //use_msi = true
 }
 
