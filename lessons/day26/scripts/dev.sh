@@ -1,13 +1,13 @@
 #!/bin/bash
 
-RESOURCE_GROUP_NAME=terraform-state-rg
-STAGE_SA_ACCOUNT=tfstagebackend2024piyush
-DEV_SA_ACCOUNT=tfdevbackend2024piyush
+RESOURCE_GROUP_NAME=RG-2
+STAGE_SA_ACCOUNT=tfstagebackendchimdi
+DEV_SA_ACCOUNT=tfdevbackendchimdi
 CONTAINER_NAME=tfstate
 
 
 # Create resource group
-az group create --name $RESOURCE_GROUP_NAME --location canadacentral
+az group create --name $RESOURCE_GROUP_NAME --location southafricanorth
 
 # Create storage account for staging environment
 az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STAGE_SA_ACCOUNT --sku Standard_LRS --encryption-services blob
