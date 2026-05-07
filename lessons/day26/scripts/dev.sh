@@ -15,6 +15,8 @@ az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STAGE_SA
 # Create storage account for dev environment
 az storage account create --resource-group $RESOURCE_GROUP_NAME --name $DEV_SA_ACCOUNT --sku Standard_LRS --encryption-services blob
 
+sleep 15
+
 # Create blob container for staging environment
 az storage container create --name $CONTAINER_NAME --account-name $STAGE_SA_ACCOUNT
 
