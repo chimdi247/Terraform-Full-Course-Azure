@@ -1,0 +1,93 @@
+trigger:
+- none
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: validate
+    jobs:
+      - job: terraform_validate
+        pool:
+         vmImage: 'ubuntu-latest'
+        steps:
+          - task: TerraformInstaller@1
+            inputs:
+              terraformVersion: 'latest'
+          - task: TerraformTask@5
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/lessons/day26/dev'
+              backendAzureRmUseEntraIdForAuthentication: false
+              backendServiceArm: 'Azure subscription 1(82484a7b-d6c1-47cd-9121-62f0609fcef2)'
+              backendAzureRmResourceGroupName: 'terraform-state-rg'
+              backendAzureRmStorageAccountName: 'tfdevbackend2026chimdi'
+              backendAzureRmContainerName: 'tfstate'
+              backendAzureRmKey: 'dev.state'
+             
+          - task: TerraformTask@5
+            inputs:
+              provider: 'azurerm'
+              command: 'validate'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/lessons/day26/dev'
+
+  - stage: Dev_deploy
+    condition:  and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - job: terraform_apply_dev
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+
+          - task: TerraformInstaller@1
+            inputs:
+              terraformVersion: 'latest'
+          - task: TerraformTask@5
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/lessons/day26/dev'
+              backendAzureRmUseEntraIdForAuthentication: false
+              backendServiceArm: 'Azure subscription 1(82484a7b-d6c1-47cd-9121-62f0609fcef2)'
+              backendAzureRmResourceGroupName: 'terraform-state-rg'
+              backendAzureRmStorageAccountName: 'tfdevbackend2026chimdi'
+              backendAzureRmContainerName: 'tfstate'
+              backendAzureRmKey: 'dev.state'
+          - task: TerraformTask@5
+            inputs:
+              provider: 'azurerm'
+              command: 'apply'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/lessons/day26/dev'
+              commandOptions: '--auto-approve'
+              environmentServiceNameAzureRM: 'Azure subscription 1(82484a7b-d6c1-47cd-9121-62f0609fcef2)'
+
+  - stage: stage_deploy
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - job: terraform_apply_stage
+        pool:
+         vmImage: 'ubuntu-latest'
+        steps:
+          - task: TerraformInstaller@1
+            inputs:
+              terraformVersion: 'latest'
+          - task: TerraformTask@5
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/lessons/day26/staging'
+              backendAzureRmUseEntraIdForAuthentication: false
+              backendServiceArm: 'Azure subscription 1(82484a7b-d6c1-47cd-9121-62f0609fcef2)'
+              backendAzureRmResourceGroupName: 'terraform-state-rg'
+              backendAzureRmStorageAccountName: 'tfstagebackend2026chimdi'
+              backendAzureRmContainerName: 'tfstate'
+              backendAzureRmKey: 'stage.state'
+          - task: TerraformTask@5
+            inputs:
+              provider: 'azurerm'
+              command: 'apply'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/lessons/day26/staging'
+              commandOptions: '--auto-approve'
+              environmentServiceNameAzureRM: 'Azure subscription 1(82484a7b-d6c1-47cd-9121-62f0609fcef2)'    
+                        
